@@ -1,0 +1,42 @@
+{
+  "name": "moodvies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "react-dev": "webpack --mode development --watch",
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylerpetersen02/moodvies.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tylerpetersen02/moodvies/issues"
+  },
+  "homepage": "https://github.com/tylerpetersen02/moodvies#readme",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "babel-loader": "^8.2.2",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.8",
+    "nodemon": "^2.0.13",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.56.0",
+    "webpack-dev-server": "^4.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "webpack-cli": "^4.8.0"
+  }
+}
