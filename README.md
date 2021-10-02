@@ -8,7 +8,7 @@
 
 <img src="/lib/img/moodvies_banner.png">
 
-Full stack, dynamic mock streaming platform for movies that allows users to login and add selected movies to their favorites list.
+Full stack, dynamic mock streaming platform for movies that allows users to login, sort movies by genre, and add selected movies to their favorites list.
 
 ## Contents
 
