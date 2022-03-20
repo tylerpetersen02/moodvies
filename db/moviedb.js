@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema({
   favorites: Array
 });
 
-const Movie = mongoose.model('Movie', movieSchema);
+const Movie = mongoose.model('moodvies', movieSchema);
 
 module.exports = {
 
@@ -51,7 +51,7 @@ module.exports = {
         if (err) {
           console.log(err);
         } else {
-          console.log('success! (userName fn)')
+          console.log('Login successful!')
         }
       });
     }
@@ -68,7 +68,7 @@ module.exports = {
         if (err) {
           console.log(err);
         } else {
-          console.log('success!')
+          console.log('Movie added to database.')
         }
       })
     }

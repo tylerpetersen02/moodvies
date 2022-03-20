@@ -2210,7 +2210,7 @@ var App = function App(props) {
       movieGenres = _useState6[0],
       setMovieGenres = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState8 = _slicedToArray(_useState7, 2),
       moviePoster = _useState8[0],
       setMoviePoster = _useState8[1];
@@ -2220,7 +2220,7 @@ var App = function App(props) {
       onlyFaves = _useState10[0],
       setOnlyFaves = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState12 = _slicedToArray(_useState11, 2),
       currentFav = _useState12[0],
       setCurrentFav = _useState12[1];
@@ -2240,7 +2240,7 @@ var App = function App(props) {
       noMovies = _useState18[0],
       setNoMovies = _useState18[1];
 
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState20 = _slicedToArray(_useState19, 2),
       userName = _useState20[0],
       setUserName = _useState20[1];
@@ -2250,7 +2250,6 @@ var App = function App(props) {
       genreId = _useState22[0],
       setGenreId = _useState22[1];
 
-  console.log(currentFav);
   var movies = [];
   var genres = []; // Gets all movie genres
 
@@ -2262,25 +2261,26 @@ var App = function App(props) {
       setNoGenres(false);
     }
   })["catch"](function (err) {
-    console.log('Error: ', err);
+    console.log("Error: ", err);
   }); // Gets favorites list
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log('getting favorites');
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("favs/".concat(userName)).then(function (response) {
       setFavMovies(response.data.favorites);
     })["catch"](function (err) {
-      console.log('Error: ', err);
+      console.log("Error: ", err);
     });
-  }, [userName, currentFav]); // Gets all movies for one genre
+  }, [userName, currentFav, onlyFaves]); // Gets all movies for one genre
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("https://api.themoviedb.org/3/discover/movie?api_key=".concat((_config_js__WEBPACK_IMPORTED_MODULE_4___default().KEY), "&with_genres=").concat(genreId)).then(function (response) {
       response.data.results.forEach(function (movie) {
-        movies.push('https://image.tmdb.org/t/p/w300' + movie.poster_path);
+        movies.push("https://image.tmdb.org/t/p/w300" + movie.poster_path);
       });
       setGenrePosters(movies);
     })["catch"](function (err) {
-      console.log('Error: ', err);
+      console.log("Error: ", err);
     });
   }, [genreId]); // Creates new user object
 
@@ -2293,22 +2293,23 @@ var App = function App(props) {
 
     if (userName && !loginModal) {
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/favs/".concat(userName), newUserObj).then(function (response) {
-        console.log('post received');
+        console.log("post received");
       })["catch"](function (err) {
-        console.log('Error: ', err);
+        console.log("Error: ", err);
       });
     }
   }, [loginModal]); // Update user favorites list
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log("Movie added to favorites list!");
     var updatePerson = {
       userName: userName,
       favorites: currentFav
     };
-    axios__WEBPACK_IMPORTED_MODULE_1___default().post('/favs', updatePerson).then(function (response) {
-      console.log('post received');
+    axios__WEBPACK_IMPORTED_MODULE_1___default().post("/favs", updatePerson).then(function (response) {
+      console.log("post received");
     })["catch"](function (err) {
-      console.log('Error: ', err);
+      console.log("Error: ", err);
     });
   }, [currentFav]);
 
@@ -2355,16 +2356,18 @@ var App = function App(props) {
     onClick: showModalHandler
   }, userName.toUpperCase())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Moodvies"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "genre_container"
-  }, movieGenres.map(function (genre) {
+  }, movieGenres === null || movieGenres === void 0 ? void 0 : movieGenres.map(function (genre, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Genres_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      key: i,
       handleOnlyFaves: handleOnlyFavesfalse,
       genre: genre,
       changeId: handleGenreChange
     });
   })), !onlyFaves && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "movie_container"
-  }, genrePosters.map(function (posterURL) {
+  }, genrePosters === null || genrePosters === void 0 ? void 0 : genrePosters.map(function (posterURL, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Posters_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: i,
       userName: userName,
       handleFavItem: handleFavItem,
       handleFavLogin: handleFavLogin,
@@ -2372,8 +2375,9 @@ var App = function App(props) {
     });
   })), onlyFaves && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "movie_container"
-  }, favMovies === null || favMovies === void 0 ? void 0 : favMovies.map(function (posterURL) {
+  }, favMovies === null || favMovies === void 0 ? void 0 : favMovies.map(function (posterURL, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Posters_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: i,
       userName: userName,
       onlyFaves: onlyFaves,
       handleFavItem: handleFavItem,
